@@ -83,15 +83,23 @@
     import { ref } from 'vue'
     import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, } from "firebase/auth";
     import { useRouter } from 'vue-router' // import router
+import { useUserLoginStore } from '~/stores/state';
     const email = ref('')
     const password = ref('')
     const router = useRouter() // get a reference to our vue router
     const auth = getAuth();
     const provider=new GoogleAuthProvider()
    
+
     definePageMeta({
         layout:"custom"
     })
+
+
+    const storeLogin=useUserLoginStore()
+    const {data}=storeToRefs(storeLogin)
+    const {addUserLogin}=storeLogin
+
     const register = () => {
       signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {

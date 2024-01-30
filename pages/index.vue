@@ -16,6 +16,11 @@
 
 <script setup>
 
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+const user = auth.currentUser;
+
 const storeCounter=useCounterStore()
 const storeKeranjang=useKeranjangStore()
 
@@ -36,6 +41,8 @@ const get=async()=>{
 
 onMounted(()=>{
     get()
+    // const user = firebase.auth().currentUser;
+    console.log(user)
 })
 
 </script>

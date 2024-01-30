@@ -1,5 +1,14 @@
 import { defineStore } from "pinia";
 
+
+export const useUserLoginStore = defineStore("userLogin",()=>{
+    const data=ref()
+    const addUserLogin=(value)=>{
+        data.value=value
+    }
+    return{data,addUserLogin}
+})
+
 export const useCounterStore = defineStore("conter",()=>{
     const value=ref(0)
     const sum=()=>{
