@@ -10,7 +10,16 @@
                 <input v-model="password" placeholder="Password" type="password" class="form-control w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
            </div>
            <div class="w-75">
-             <button  @click="register" type="button" class="w-100 btn btn-primary">Sign In</button>
+             <button :disabled='isLoading' @click="register" type="button" class="w-100 btn btn-primary">
+              <span v-if="isLoading">
+                <div class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </span>
+              <span v-else>
+                Sign In
+              </span>
+            </button>
            </div>
            <p class="mt-3">Or Login With</p>
            <div  @click="gmail"  class="login-google">
@@ -85,6 +94,7 @@
     import { useRouter } from 'vue-router' // import router
 import { useUserLoginStore } from '~/stores/state';
     const email = ref('')
+    const isLoading = ref(false)
     const password = ref('')
     const router = useRouter() // get a reference to our vue router
     const auth = getAuth();
@@ -101,13 +111,15 @@ import { useUserLoginStore } from '~/stores/state';
     const {addUserLogin}=storeLogin
 
     const register = () => {
+      isLoading.value=true
+      console.log("loing")
       signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
           console.log("success login")
           console.log(user)
-          router.push('/')
+          router.push('/about')
           // ...
         })
         .catch((error) => {
@@ -115,17 +127,22 @@ import { useUserLoginStore } from '~/stores/state';
           const errorMessage = error.message;
           console.log(errorMessage)
           // ..
+        }).finally(()=>{
+          isLoading.value=false
         });
     }
 
   const gmail=()=>{
+    // isLoading.value=true
     signInWithPopup(auth,provider)
     .then(result=>{
       console.log(result)
-      router.push("/")
+      router.push("/about")
     })
     .catch(err=>{
       console.log(err)
+    }).finally(()=>{
+      // isLoading.value=false
     })
   }
 
