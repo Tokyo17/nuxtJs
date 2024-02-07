@@ -1,9 +1,9 @@
 <template>
-    <!-- <button @click="addDataMahasiswa">ADD</button> -->
+   <div class="small-size"></div>
  
 <div style="flex-direction: column;" class="center-all pt-4">
    <div class="mb-3">
-        <button @click="addHandle" type="button" class="btn btn-warning ">Tambah Data Mahasiswa</button>
+        <button :disabled="isDelete>-1" @click="addHandle" type="button" class="btn btn-warning ">Tambah Data Mahasiswa</button>
         <button @click="logout" type="button" class="ms-1 btn btn-danger">Logout</button>
    </div>
     <table id="customers">
@@ -41,9 +41,9 @@
 </div>
 
     <div :class="{popupAdd:true,hiddenAdd:!showAddPopup}">
-        <div @click="addHandle" class="close-popup-input center-all">
+        <!-- <div @click="addHandle" class="close-popup-input center-all">
                 X
-            </div>
+            </div> -->
         <div class="bingkai">
             <p class="mx-3 my-2">Nama :</p>
             <input v-model="nama" class="form-control " type="text" placeholder="Tulis nama mahasiswa" aria-label="readonly input example">
@@ -54,8 +54,17 @@
             <p class="mx-3 my-2">Alamat :</p>
             <textarea v-model="alamat" class="form-control " placeholder="Tulis alamat mahasiswa max 200 karakter" id="floatingTextarea2"></textarea>
             <div class="button-action-input">
-                <button @click="updateOrAdd()" type="button" class="btn btn-primary">{{isUpdate?'Update':"Add"}}</button>
-                <button @click="addHandle" type="button" class="btn btn-danger">Cancle</button>
+                <button :disabled='isLoading' @click="updateOrAdd()" type="button" class="btn btn-primary">
+                    <span v-if="isLoading">
+                     <div style="width: 16px; height: 16px;" class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                    </div>
+                    </span>
+                    <span v-else>
+                        {{isUpdate?'Update':"Add"}}
+                    </span>
+                </button>
+                <button :disabled="isLoading"  @click="addHandle" type="button" class="btn btn-danger">Cancle</button>
             </div>
         </div>
     </div>
@@ -76,13 +85,24 @@
       <strong class="me-auto">NuxtFeathers</strong>
     </div>
     <div class="toast-body">
-      Hello, world! This is a toast message.
+      {{toastText }}
     </div>
   </div>
 
 </template>
 
 <style>
+@media screen and (max-width: 900px) {
+.small-size{
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: pink;
+}
+  }
+
 #customers td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
@@ -170,6 +190,8 @@ const nama=ref('')
 const alamat=ref('')
 const foto=ref('')
 const usia=ref('')
+const toastText=ref("")
+const isLoading=ref(false)
 const isDelete=ref(-1)
 const isUpdate=ref(false)
 const showToast=ref(false)
@@ -194,6 +216,7 @@ signOut(auth).then((res) => {
 }
 
 const showToastHandle=(text)=>{
+    toastText.value=text
     showToast.value=true
     setTimeout(() => {
         showToast.value = false;
@@ -202,6 +225,7 @@ const showToastHandle=(text)=>{
 
 
 const kosongkan=()=>{
+    isLoading.value=false
     // if (fileInput.value) {
         fileInput.value.value = null;
         fileInput.value = null;
@@ -242,11 +266,9 @@ const updateHandle=(data)=>{
 }
 
 const updateOrAdd=()=>{
-    if(!FILE.value||!nama.value||!usia.value||!alamat.value){
-        showToastHandle()
-    }else{
+
         if(isUpdate.value){
-            
+            isLoading.value=true
             if(!FILE.value){
                 updateDataMahasiswa()
                 console.log("FOTO KOSONG")
@@ -255,15 +277,15 @@ const updateOrAdd=()=>{
                 firebaseUpload()
             }
         }else{
-            if(!FILE.value){
-                apiAddDataMahasiswa()
-                console.log("FOTO KOSONG")
-            }else{
+            if(!FILE.value||!nama.value||!usia.value||!alamat.value){
+                   showToastHandle("Harap mengisi semua kolom dengan benar")
+             }else{
+                isLoading.value=true
                 console.log("update dengan foto")
                 firebaseUpload()
-            }
+             }
         }
-    }
+    
 }
 
 const getDataMahasiswa=async()=>{
@@ -302,6 +324,7 @@ const updateDataMahasiswa=async(url)=>{
         getDataMahasiswa();
         addHandle()
         kosongkan()
+        showToastHandle("Update data success")
     }catch(err){
         console.log(err)
     }
@@ -357,6 +380,7 @@ const apiAddDataMahasiswa=async(url,namafile)=>{
         getDataMahasiswa();
         addHandle()
         kosongkan()
+        showToastHandle("Tambah data success")
     }catch(err){
         console.log(err)
     }
@@ -375,6 +399,7 @@ const deleteDataMahasiswa=async(id)=>{
         })
         getDataMahasiswa();
         isDelete.value=-1
+        showToastHandle("Delete success")
     }catch(err){
         console.log(err)
         isDelete.value=-1

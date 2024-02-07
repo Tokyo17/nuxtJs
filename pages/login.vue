@@ -119,7 +119,7 @@ import { useUserLoginStore } from '~/stores/state';
           const user = userCredential.user;
           console.log("success login")
           console.log(user)
-          router.push('/about')
+          router.push('/')
           // ...
         })
         .catch((error) => {
@@ -137,7 +137,7 @@ import { useUserLoginStore } from '~/stores/state';
     signInWithPopup(auth,provider)
     .then(result=>{
       console.log(result)
-      router.push("/about")
+      router.push("/")
     })
     .catch(err=>{
       console.log(err)
