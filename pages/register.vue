@@ -29,54 +29,108 @@
       </div>
     </div>
   <style>
-    @media screen and (max-width: 900px) {
-      .small-size{
-          position: fixed;
-          z-index: 999;
-          bottom: 0;
-          width: 100% !important;
-          height: 100% !important;
-          background-color: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
+   @media screen and (max-width: 900px) {
+    .small-size{
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .bingkai-alert{
+        visibility: initial !important;
+        display: flex;
+        /* border: 1px solid; */
+        width: 350px !important;
+        height: 100px !important;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 10px 9px 13px rgb(0 0 0 / 40%);
+        text-align: center;
+        padding: 20px;
+    } 
+    .icon-alert{
+        visibility: initial !important;
+        width: 50px    !important;
+        height: 50px  !important;
+        /* border: 1px solid; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        background:rgb(248, 175, 79);
+        font-size: 40px;
+    
+        box-shadow: 4px 6px 9px rgb(0 0 0 / 40%);
+        margin-bottom: 10px;
+    }
+    }
+    
+    .bingkai-alert,.icon-alert{
+        visibility: hidden;
+        widows: 0;
+        height: 0;
+    }
+    
+      *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      .bingkai-alert{
-          visibility: initial !important;
-          display: flex;
-          /* border: 1px solid; */
-          width: 350px !important;
-          height: 100px !important;
-          justify-content: center;
-          align-items: center;
-          background: white;
-          border-radius: 10px;
-          box-shadow: 10px 9px 13px rgb(0 0 0 / 40%);
-          text-align: center;
-          padding: 20px;
-      } 
-      .icon-alert{
-          visibility: initial !important;
-          width: 50px    !important;
-          height: 50px  !important;
-          /* border: 1px solid; */
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 100%;
-          background:rgb(248, 175, 79);
-          font-size: 40px;
+      body{
+        height: 100%;
       
-          box-shadow: 4px 6px 9px rgb(0 0 0 / 40%);
-          margin-bottom: 10px;
       }
+    
+      #__nuxt{
+        height: 100%;
+        /* border: 1px solid; */
       }
-      
-      .bingkai-alert,.icon-alert{
-          visibility: hidden;
-          widows: 0;
-          height: 0;
+      html{
+        height: 100%;
+        /* border: 1px solid; */
+      }
+      .login{
+        /* border: 1px solid; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      .login a{
+        color: black;
+        font-weight: 600;
+        text-decoration: revert;
+      }
+      .login-core{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        /* border: 1px solid; */
+        height:480px;
+        width: 350px;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px rgb(0 0 0 / 60%);
+      }
+      .login-google{
+        /* border: 1px solid; */
+        cursor: pointer;
+        box-shadow: 1px 1px 5px rgb(0 0 0 / 60%);
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 100%;
+    
+      }
+      .login-google img{
+        width: 100%;
       }
   </style>
     
