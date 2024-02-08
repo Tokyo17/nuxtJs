@@ -1,5 +1,5 @@
 <template>
-   <div class="small-size"></div>
+
  
 <div style="flex-direction: column;" class="center-all pt-4">
    <div class="mb-3">
@@ -97,11 +97,50 @@
     position: fixed;
     z-index: 999;
     bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: pink;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-  }
+.bingkai-alert{
+    visibility: initial !important;
+    display: flex;
+    /* border: 1px solid; */
+    width: 350px !important;
+    height: 100px !important;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 9px 13px rgb(0 0 0 / 40%);
+    text-align: center;
+    padding: 20px;
+} 
+.icon-alert{
+    visibility: initial !important;
+    width: 50px    !important;
+    height: 50px  !important;
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background:rgb(248, 175, 79);
+    font-size: 40px;
+
+    box-shadow: 4px 6px 9px rgb(0 0 0 / 40%);
+    margin-bottom: 10px;
+}
+}
+
+.bingkai-alert,.icon-alert{
+    visibility: hidden;
+    widows: 0;
+    height: 0;
+}
 
 #customers td, #customers th {
   border: 1px solid #ddd;
