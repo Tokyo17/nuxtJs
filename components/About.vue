@@ -1,6 +1,14 @@
 <template>
 
- 
+<div class="small-size">
+    <div class="icon-alert">
+            !
+    </div>
+    <div class="bingkai-alert">
+        Harap membuka pada perangkat pc atau laptop karena aplikasi tidak didesain pada layar kecil
+    </div>
+   </div>
+   
 <div style="flex-direction: column;" class="center-all pt-4">
    <div class="mb-3">
         <button :disabled="isDelete>-1" @click="addHandle" type="button" class="btn btn-warning ">Tambah Data Mahasiswa</button>

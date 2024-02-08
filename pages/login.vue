@@ -1,5 +1,13 @@
 <template>
-
+       <div class="small-size">
+    <div class="icon-alert">
+            !
+    </div>
+    <div class="bingkai-alert">
+        Harap membuka pada perangkat pc atau laptop karena aplikasi tidak didesain pada layar kecil
+    </div>
+   </div>
+   
     <div class="login">
       <div class="login-core">
             <h1 class="my-4">Sign In First</h1>
