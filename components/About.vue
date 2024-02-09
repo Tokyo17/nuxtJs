@@ -58,7 +58,7 @@
             <p class="mx-3 my-2">Umur :</p>
             <input v-model="usia"  class="form-control" type="number" placeholder="Tulis umur mahasiswa" aria-label="readonly input example">
             <p class="mx-3 my-2">Foto :</p>
-            <input ref="fileInput" @change="getFile"   class="form-control " type="file" id="formFile">
+            <input ref="fileInput" @change="getFile"  accept="image/*"  class="form-control " type="file" id="formFile">
             <p class="mx-3 my-2">Alamat :</p>
             <textarea v-model="alamat" class="form-control " placeholder="Tulis alamat mahasiswa max 200 karakter" id="floatingTextarea2"></textarea>
             <div class="button-action-input">
