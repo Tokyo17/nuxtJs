@@ -189,7 +189,6 @@ td button{
     background-color: #ffffff8a;
     position: absolute;
     right: 0;
-    transform: translate(410px, -201px);
     border-radius: 100%;
     cursor: pointer;
     height: 40px;
@@ -208,7 +207,7 @@ td button{
 }
 .bingkai-foto{
     max-width: 530px;
-    max-height: 460px;
+    max-height: 560px;
     background: white;
     position: relative;
     overflow-y: scroll;
