@@ -8,7 +8,7 @@
         Harap membuka pada perangkat pc atau laptop karena aplikasi tidak didesain pada layar kecil
     </div>
    </div>
-   
+
 <div style="flex-direction: column;" class="center-all pt-4">
    <div class="mb-3">
         <button :disabled="isDelete>-1" @click="addHandle" type="button" class="btn btn-warning ">Tambah Data Mahasiswa</button>
@@ -78,10 +78,10 @@
     </div>
 
     <div :class="{popupAdd:true,hiddenAdd:!showFotoPopup}">
-        <div @click="showFoto" class="close-popup-input center-all">
-                X
-        </div>
         <div class="bingkai-foto">
+            <div @click="showFoto" class="close-popup-input center-all">
+                X
+             </div>  
             <img :src="foto"/>
         </div>
     </div>
@@ -181,18 +181,22 @@ td button{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .close-popup-input{
     width: 40px;
     height: 40px;
     background-color: #ffffff8a;
-    /* border: 1px solid; */
-    position: relative;
+    position: absolute;
     right: 0;
     transform: translate(410px, -201px);
     border-radius: 100%;
     cursor: pointer;
-    z-index: 99;
+    height: 40px;
+    position: absolute;
+    right: 10px;
+    width: 40px;
+    top: 10px;
 }
 .bingkai{
     width: 400px;
@@ -203,8 +207,8 @@ td button{
     border-radius: 10px;
 }
 .bingkai-foto{
-    max-width: 400px;
-    max-height: 430px;
+    max-width: 530px;
+    max-height: 460px;
     background: white;
     position: relative;
     overflow-y: scroll;
